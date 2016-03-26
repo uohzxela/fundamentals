@@ -1,3 +1,5 @@
+from utils import printTree
+
 class TreeNode(object):
 	def __init__(self, val):
 		self.val = val
@@ -38,7 +40,7 @@ class BST(object):
 			par.right = new_link
 
 	def delete(self, k):
-		print "deleting", k
+		print "deleting", k, "..."
 		curr, par = self.root, None
 
 		while curr and curr.val != k:
@@ -80,27 +82,6 @@ class BST(object):
 		return True
 				
 
-	def printTree(self):
-		self.printHelper(self.root, "")
-
-	def printHelper(self, root, indent):
-		if root:
-			self.printHelper(root.right, indent + "    ")
-			print indent + str(root.val)
-			self.printHelper(root.left, indent + "    ")
-
-	def printLevel(self):
-		if not self.root: return
-		q = [self.root]
-		while q:
-			currLen = len(q)
-			for _ in xrange(currLen):
-				n = q.pop(0)
-				print n.val,
-				if n.left: q.append(n.left)
-				if n.right: q.append(n.right)
-			print
-
 bst = BST()
 bst.insert(7)
 bst.insert(5)
@@ -115,10 +96,10 @@ bst.insert(2)
 bst.insert(1)
 
 print "before delete"
-bst.printTree()
+printTree(bst.root)
 
 # bst.delete(5)
 bst.delete(7)
 
-bst.printTree()
+printTree(bst.root)
 print bst.min().val

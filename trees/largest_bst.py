@@ -1,3 +1,5 @@
+from utils import printTree
+
 class Tree(object):
 	def __init__(self, x):
 		self.val = x
@@ -18,21 +20,10 @@ r.left.right.right.left = Tree(3)
 max_size = 0
 largest_bst = None
 
-def print_level(root):
-	if not root: return
-	q = [root]
-	while q:
-		curr_len = len(q)
-		for _ in xrange(curr_len):
-			n = q.pop(0)
-			if n.left: q.append(n.left)
-			if n.right: q.append(n.right)
-			print n.val,
-		print
 
 def largestBST(root):
 	largestBST_(root, float('-inf'), float('inf'))
-	print_level(largest_bst)
+	printTree(largest_bst)
 
 def largestBST_(root, l, h):
 	if not root: return 0, None

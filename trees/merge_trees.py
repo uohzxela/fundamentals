@@ -1,3 +1,5 @@
+from utils import printTree, findLen
+
 class Tree(object):
 	def __init__(self, x):
 		self.val = x
@@ -12,11 +14,6 @@ r2 = Tree(7)
 r2.left = Tree(6)
 r2.right = Tree(8)
 
-def print_list(curr):
-	while curr:
-		print curr.val,
-		curr = curr.next
-	print
 
 def flatten(root):
 	if not root: return None
@@ -52,18 +49,6 @@ def merge(h1, h2):
 
 	return fake_head.next
 
-def print_level(root):
-	if not root: return
-	q = [root]
-	while q:
-		curr_len = len(q)
-		for _ in xrange(curr_len):
-			n = q.pop(0)
-			if n.left: q.append(n.left)
-			if n.right: q.append(n.right)
-			print n.val,
-		print
-
 def find_middle(h):
 	slow = fast = h
 	prev = None
@@ -74,19 +59,21 @@ def find_middle(h):
 	return prev, slow
 
 
+def balance_(h, n):
+	if n <= 0: return None, h
+	left_child, curr_root = balance_(h, n/2)
+	curr_root.left = left_child
+	right_child, next_root = balance_(curr_root.next, n-n/2-1)
+	curr_root.right = right_child
+	return curr_root, next_root
+
+
 def balance(h):
-	prev, mid = find_middle(h)
-	if not prev: return mid
-	root = Tree(mid.val)
-	prev.next = None 
-	root.left = balance(h)
-	root.right = balance(mid.next)
-	mid.next = None
-	return root
+	n = findLen(h)
+	return balance_(h, n)[0]
 
 h1 = flatten(r1)
 h2 = flatten(r2)
 h = merge(h1, h2)
 r = balance(h)
-print_level(r)
-# print_list(h)
+printTree(r)

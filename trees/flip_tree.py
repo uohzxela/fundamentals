@@ -1,3 +1,5 @@
+from utils import printTree
+
 class Tree(object):
 	def __init__(self, x):
 		self.val = x
@@ -18,18 +20,6 @@ def flip(root):
 	flip(root.left)
 	flip(root.right)
 
-def print_level(root):
-	if not root: return
-	q = [root]
-	while q:
-		curr_len = len(q)
-		for _ in xrange(curr_len):
-			n = q.pop(0)
-			if n.left: q.append(n.left)
-			if n.right: q.append(n.right)
-			print n.val,
-		print
-
-print_level(r)
+printTree(r)
 flip(r)
-print_level(r)
+printTree(r)

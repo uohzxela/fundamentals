@@ -1,3 +1,5 @@
+from utils import printTree
+
 class Tree(object):
 	def __init__(self, x):
 		self.val = x
@@ -12,18 +14,6 @@ r.left.right = Tree(5)
 r.right.left = Tree(6)
 r.right.right = Tree(7)
 
-def print_level(root):
-	if not root: return
-	q = [root]
-	while q:
-		curr_len = len(q)
-		for _ in xrange(curr_len):
-			n = q.pop(0)
-			if n.left: q.append(n.left)
-			if n.right: q.append(n.right)
-			print n.val,
-		print
-
 def clone(root):
 	if not root: return None
 	r = Tree(root.val)
@@ -31,5 +21,5 @@ def clone(root):
 	r.right = clone(root.right)
 	return r 
 
-print_level(r)
-print_level(clone(r))
+printTree(r)
+printTree(clone(r))
