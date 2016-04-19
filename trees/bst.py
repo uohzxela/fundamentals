@@ -62,7 +62,7 @@ class BST(object):
 			# save successor's right child since it may be modified to hold deleted node's right child
 			r_curr_right = r_curr.right 
 
-			# to avoid pointing successor's right pointer to itself
+			# the if statement prevents successor's right pointer from pointing to itself
 			if curr.right != r_curr:
 				r_curr.right = curr.right
 

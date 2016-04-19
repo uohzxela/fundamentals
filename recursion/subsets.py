@@ -1,39 +1,32 @@
-# version 1
-def subsets(A):
-	print_subsets(A, A, 0, 0)
+'''
+generate all subsets of size k from {1,2,3,...,n}
+'''
 
-def print_subsets(set, subset, r, w):
-	if r == len(set):
-		print_subset(subset, w)
-		return
-	print_subsets(set, subset, r+1, w)
-	subset[w], set[r] = set[r], subset[w]
-	print_subsets(set, subset, r+1, w+1)
-	subset[w], set[r] = set[r], subset[w]
+def subsets(n, k):
+    subsets_(n, k, 1, [])
+'''
+optimized version
+'''
+# def subsets_(n, k, p, curr):
+#     if len(curr) == k:
+#         print curr
+#         return
+#     remaining = k-len(curr)
+#     i = p
+#     while i <= n and remaining <= (n - i  + 1):
+#         curr.append(i)
+#         subsets_(n, k, i+1, curr)
+#         curr.pop()
+#         i += 1
 
-def print_subset(subset, w):
-	print subset[:w]
+def subsets_(n, k, p, curr):
+    if len(curr) == k:
+        print curr
+        return
+    for i in xrange(p, n+1):
+        curr.append(i)
+        subsets_(n, k, i+1, curr)
+        curr.pop()
 
-subsets([1,2,3])
 
-print
-
-def subsets2(A):
-	print_subsets2(A, [False]*len(A), 0)
-
-def print_subsets2(set, subset, k):
-	if k == len(set):
-		print_subset2(set, subset)
-		return
-	print_subsets2(set, subset, k+1)
-	subset[k] = True
-	print_subsets2(set, subset, k+1)
-	subset[k] = False
-
-def print_subset2(set, subset):
-	print '{',
-	for i in xrange(len(subset)):
-		if subset[i]: print set[i],
-	print '}'
-
-subsets2([1,2,3])
+subsets(5, 3)

@@ -1,4 +1,5 @@
 '''
+longest common substring
 insights: 
 	the max length is not found at the bottom right cell.
 	need to use a variable to store the max length when performing DP, and return it as the answer
