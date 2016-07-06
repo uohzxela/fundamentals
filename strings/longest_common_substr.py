@@ -12,7 +12,16 @@ def lcs(s1, s2):
 					maxLen = dp[i][j]
 					longestEnd = i
 			else: dp[i][j] = 0
+	print maxLen
 	return s1[longestEnd-maxLen:longestEnd]
 
+def lcsR(s1, s2):
+	return lcsR_(s1, s2, len(s1)-1, len(s2)-1, 0, 0)
+
+def lcsR_(s1, s2, i, j, l, m):
+	if i < 0 or j < 0: return m
+	if s1[i] == s2[j]: return lcsR_(s1, s2, i-1, j-1, l+1, max(m, l+1))
+	return max(lcsR_(s1, s2, i-1, j, 0, m), lcsR_(s1, s2, i, j-1, 0, m))
 
 print lcs("OldSite:GeeksforGeeks.org", "NewSite:GeeksQuiz.com")
+print lcsR("OldSitez", "NewSiteSitez")
