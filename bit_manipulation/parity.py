@@ -24,6 +24,14 @@ def parity3(x):
 	x ^= x >> 1
 	return x & 1
 
+def parity_cache(x):
+	WORD_SIZE = 16
+	BIT_MASK = 0xFFFF
+	return cache[x & BIT_MASK] ^
+		   cache[(x >> WORD_SIZE) & BIT_MASK] ^
+		   cache[(x >> (WORD_SIZE * 2)) & BIT_MASK] ^
+		   cache[(x >> (WORD_SIZE * 3)) & BIT_MASK]
+
 assert parity(0x1011) == 1
 assert parity(0x101) == 0
 assert parity2(0x1011) == 1
