@@ -21,63 +21,64 @@ class BST(object):
 			root.left = self.insert_(root.left, val)
 		return root
 
-	def min(self):
-		if not self.root: return None
-		curr = self.root
-		while curr.left:
-			curr = curr.left
-		return curr
-
-	def successor(self, root):
-		if not root: return None
-		return self.min(root.right)
-
-	def replaceParentChildLink(self, par, child, new_link):
-		if not par: return
-		if par.left == child:
-			par.left = new_link
+	def replace_node(self, parent, old_child, new_child):
+		# if parent is null, that means old_child is the root
+		# replace root with new_child
+		if not parent:
+			self.root = new_child
+			return
+		if parent.left == old_child:
+			parent.left = new_child
 		else:
-			par.right = new_link
+			parent.right = new_child
 
-	def delete(self, k):
-		print "deleting", k, "..."
-		curr, par = self.root, None
+	def find_target(self, val):
+		target, target_parent = self.root, None
+		while target and target.val != val:
+			target_parent = target
+			target = target.left if target.val > val else target.right
+		return target, target_parent
 
-		while curr and curr.val != k:
-			par = curr
-			curr = curr.left if k < curr.val else curr.right
-		if not curr: return False
+	def find_successor(self, root):
+		successor, successor_parent = root.right, root
+		while successor.left:
+			successor_parent = successor
+			successor = successor.left
+		return successor, successor_parent
 
-		if curr.right:
-			r_curr, r_par = curr.right, curr
+	def delete(self, val):
+		print "deleting", val, "..."
+		target, target_parent = self.find_target(val)
+		if not target: 
+			return False
 
-			# find successor starting from deleted node's right child
-			while r_curr.left:
-				r_par = r_curr
-				r_curr = r_curr.left
-
-			# set successor's left child to deleted node's left child 
-			r_curr.left = curr.left
-
-			# save successor's right child since it may be modified to hold deleted node's right child
-			r_curr_right = r_curr.right 
-
-			# the if statement prevents successor's right pointer from pointing to itself
-			if curr.right != r_curr:
-				r_curr.right = curr.right
+		# if target node has a right child, replace it with its successor
+		if target.right:
+			successor, successor_parent = self.find_successor(target)
 
 			# replace successor with its right child
-			self.replaceParentChildLink(r_par, r_curr, r_curr_right)
-			 # replace deleted node with its successor
-			self.replaceParentChildLink(par, curr, r_curr)
+			# why not left child? because its left child pointer is always empty
+			self.replace_node(parent=successor_parent, 
+							  old_child=successor, 
+							  new_child=successor.right)
 
-			# set successor as root if deleted node is root
-			if self.root == curr:
-				self.root = r_curr
-		else: # if deleted node has no successor, use its left child or if no left child, then None, to replace it
-			if self.root == curr:
-				root = curr.left
-			self.replaceParentChildLink(par, curr, curr.left)
+			 # replace target node with its successor
+			self.replace_node(parent=target_parent, 
+							  old_child=target, 
+							  new_child=successor)
+
+			# set successor's left child to target node's left child 
+			successor.left = target.left
+			# set successor's right child to target node's right child
+			# only if successor's parent is not the target node
+			if target.right != successor:
+				successor.right = target.right
+
+		# if target node has no successor, replace it with its left child
+		else:
+			self.replace_node(parent=target_parent,
+							  old_child=target,
+							  new_child=target.left)
 
 		return True
 				
@@ -87,6 +88,7 @@ bst.insert(7)
 bst.insert(5)
 bst.insert(9)
 bst.insert(8)
+bst.insert(8.5)
 bst.insert(3)
 bst.insert(6)
 bst.insert(10)
@@ -102,4 +104,3 @@ printTree(bst.root)
 bst.delete(7)
 
 printTree(bst.root)
-print bst.min().val
