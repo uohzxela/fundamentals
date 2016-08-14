@@ -10,4 +10,5 @@ def atoi(s):
 		res = res * 10 + (ord(s[i])- ord('0'))
 	return -res if isNeg else res
 
-print atoi("2147483648")
+assert atoi("2147483648") == 2147483648
+assert atoi("-123") == -123
