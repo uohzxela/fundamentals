@@ -1,4 +1,4 @@
-	class Tree(object):
+class Tree(object):
     def __init__(self, x):
         self.val = x
         self.left = None
@@ -25,14 +25,14 @@ def inorder(root):
 
 
 def inorderIter(root):
-	s, curr = [], root
-	while s or curr:
-		while curr:
-			s.append(curr)
-			curr = curr.left
-		n = s.pop()
-		print n.val,
-		curr = n.right
+	st = []
+	while st or root:
+		while root:
+			st.append(root)
+			root = root.left
+		root = st.pop()
+		print root.val,
+		root = root.right
 	print
 
 inorder(r)

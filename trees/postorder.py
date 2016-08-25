@@ -25,6 +25,7 @@ def postorder(root):
 postorder(r)
 print
 
+# Space complexity: O(n)
 def postorder_iter(root):
 	s1 = [root]
 	s2 = []
@@ -37,4 +38,36 @@ def postorder_iter(root):
 		print s2.pop().val,
 	print
 
+"""
+1.1 Create an empty stack
+2.1 Do following while root is not NULL
+    a) Push root's right child and then root to stack.
+    b) Set root as root's left child.
+2.2 Pop an item from stack and set it as root.
+    a) If the popped item has a right child and the right child 
+       is at top of stack, then remove the right child from stack,
+       push the root back and set root as root's right child.
+    b) Else print root's data and set root as NULL.
+2.3 Repeat steps 2.1 and 2.2 while stack is not empty.
+"""
+# Space complexity: O(1)
+def postorder_iter2(root):
+	st = []
+	while root or st:
+		while root:
+			if root.right:
+				st.append(root.right)
+			st.append(root)
+			root = root.left
+		root = st.pop()
+		if st and root.right == st[-1]:
+			st.pop()
+			st.append(root)
+			root = root.right
+		else:
+			print root.val,
+			root = None
+	print
+
 postorder_iter(r)
+postorder_iter2(r)
