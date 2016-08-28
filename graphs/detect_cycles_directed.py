@@ -17,20 +17,21 @@ g2 = {
 def has_cycle(g):
     alive = defaultdict(lambda: None)
     visited = defaultdict(lambda: None)
-    for k, v in g.iteritems():
-        if has_cycle_(g, k, alive, visited): 
+    for v in g:
+        if not visited[v] and has_cycle_(g, v, alive, visited): 
             return True
     return False
 
 def has_cycle_(g, v, alive, visited):
-    if not visited[v]:
-        alive[v] = True
-        visited[v] = True
-        for n in g[v]:
-            if not visited[n] and has_cycle_(g, n, alive, visited): return True
-            elif visited[n] and alive[n]: return True
+    alive[v] = True
+    visited[v] = True
+    for n in g[v]:
+        if visited[n] and alive[n]:
+            return True
+        elif not visited[n] and has_cycle_(g, n, alive, visited):
+            return True
     alive[v] = False
     return False
     
-print has_cycle(g)
-print has_cycle(g2)
+assert has_cycle(g) 
+assert not has_cycle(g2)
