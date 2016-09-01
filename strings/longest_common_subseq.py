@@ -30,6 +30,7 @@ def lcsDP(s1, s2):
 			if s1[i-1] == s2[j-1]:
 				dp[i][j] = dp[i-1][j-1] + 1
 			else:
+				# because of this line, the res is collected at the last element, e.g. dp[-1][-1]
 				dp[i][j] = max(dp[i-1][j], dp[i][j-1])
 
 	lcs = []

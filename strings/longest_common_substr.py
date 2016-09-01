@@ -11,6 +11,9 @@ def lcs(s1, s2):
 				if maxLen < dp[i][j]:
 					maxLen = dp[i][j]
 					longestEnd = i
+			# because of this line, we have to keep track of the maxLen
+			# as it is not collected at the last element, e.g. dp[-1][-1]
+			# compare this line with longest_common_subseq.py
 			else: dp[i][j] = 0
 	print maxLen
 	return s1[longestEnd-maxLen:longestEnd]
