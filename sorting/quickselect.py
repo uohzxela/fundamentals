@@ -1,9 +1,8 @@
 def quickselect(A, k):
 	return select(A, 0, len(A)-1, k)
 
+
 def select(A, l, h, k):
-	# if l == h: 
-	# 	return A[l]
 	if l > h: return None
 	p = partition(A, l, h)
 	if p == k: 
@@ -12,6 +11,7 @@ def select(A, l, h, k):
 		return select(A, p+1, h, k)
 	else:
 		return select(A, l, p-1, k)
+
 
 def partition(A, l, h):
 	p = h
@@ -23,4 +23,7 @@ def partition(A, l, h):
 	A[p], A[firsthigh] = A[firsthigh], A[p]
 	return firsthigh 
 
-print quickselect([13, 2, 5], 2)
+
+assert quickselect([7], 0) == 7
+assert quickselect([7, 10, 4, 3, 20, 15], 2) == 7
+assert quickselect([7, 10, 4, 3, 20, 15], 3) == 10
