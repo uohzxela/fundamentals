@@ -31,7 +31,6 @@ class LRUCache(object):
         else:
             return -1
         
-
     def set(self, key, val):
         """
         :type key: int
@@ -60,19 +59,16 @@ class LRUCache(object):
         self.size += 1
         
     def delete(self, node):
-        if not node: return
+        if not node:
+            return
+        if node == self.head: 
+            self.head = node.next
         if node == self.tail:
-            self.tail = self.tail.prev
-            if node == self.head: 
-                self.head = None
-        else:
-            prev = node.prev
-            # no prev, means node == head
-            if not prev:
-                self.head = node.next
-            else:
-                prev.next = node.next
-                node.next.prev = prev
+            self.tail = node.prev
+        if node.prev:
+            node.prev.next = node.next
+        if node.next:
+            node.next.prev = node.prev
         # very important!
         node.prev = None
         node.next = None
