@@ -1,3 +1,4 @@
+# O(2^n)
 # version 1
 def subsets(A):
 	print_subsets(A, A, 0, 0)

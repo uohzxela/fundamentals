@@ -1,3 +1,4 @@
+# O(n!)
 def permutations(A):
 	print_permutations(A, 0)
 

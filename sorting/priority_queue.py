@@ -11,7 +11,8 @@ class PriorityQueue:
 	def heapify(self, arr):
 	# arr is an array with arbitrarily placed elements
 	# the observation is that any element that is indexed after self.n/2-1 is a leaf node
-	# hence it is a one-element heap
+	# hence it is a one-element heap,
+	# so we only need to bubble down the non-leaf nodes before the index
 		self.q = arr
 		self.n = len(arr)
 		for i in xrange(self.n/2-1, -1, -1):
@@ -33,7 +34,7 @@ class PriorityQueue:
 	"""Time complexity: O(log n)"""
 	def bubble_up(self, i):
 		parent = (i-1)/2
-		if parent == -1: return
+		if parent < 0: return
 		if self.q[parent] > self.q[i]:
 			self.swap(parent, i)
 			self.bubble_up(parent)

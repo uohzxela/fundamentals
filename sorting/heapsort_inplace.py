@@ -3,6 +3,7 @@ def heapsort(A):
 	n = len(A)-1
 	for i in xrange(n, 0, -1):
 		A[0], A[i] = A[i], A[0]
+		# why i-1? because the elements at index i and beyond are already sorted.
 		siftDown(A, 0, i-1)
 	return A
 
@@ -23,4 +24,4 @@ def buildMaxHeap(A):
 		siftDown(A, i, n)
 
 
-print heapsort([5,6,2,10,3,-1,11,1,0,7, 4])
+assert heapsort([5,6,2,10,3,-1,11,1,0,7, 4]) == [-1, 0, 1, 2, 3, 4, 5, 6, 7, 10, 11]
