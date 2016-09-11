@@ -11,7 +11,6 @@ class Solution(object):
                 nums[i], nums[j] = nums[j], nums[i]
             else:
                 i += 1
-            print 'asdf'
                 
         for j in xrange(len(nums)):
             if nums[j] != j+1:

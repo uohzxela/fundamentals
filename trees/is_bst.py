@@ -24,5 +24,5 @@ def isBST_(root, l, r):
 def isBST(root):
 	return isBST_(root, float('-inf'), float('inf'))
 
-print isBST(r)
-print isBST(r2)
+assert not isBST(r)
+assert isBST(r2)
