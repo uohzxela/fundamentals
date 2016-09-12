@@ -2,7 +2,6 @@ class HashSet(object):
 	def __init__(self, capacity=1000):
 		self.capacity = capacity
 		self.buckets = [[] for i in xrange(self.capacity)]
-		self.keys = []
 
 	def hash(self, key):
 		return sum([ord(c) for c in key]) % self.capacity
@@ -13,14 +12,12 @@ class HashSet(object):
 			if bucket[i] == key:
 				return
 		bucket.append(key)
-		self.keys.append(key)
 
 	def remove(self, key):
 		bucket = self.buckets[self.hash(key)]
 		for i in xrange(len(bucket)):
 			if bucket[i] == key:
 				bucket.remove(bucket[i])
-				self.keys.remove(key)
 				return
 		raise KeyError(key)
 
@@ -36,8 +33,9 @@ class HashSet(object):
 
 	def __repr__(self):
 		string = []
-		for k in self.keys:
-			string.append(k)
+		for bucket in self.buckets:
+			if not bucket: continue
+			string.append(bucket[0])
 		return '\n'.join(string)
 
 h = HashSet()

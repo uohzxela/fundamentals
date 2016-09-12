@@ -2,7 +2,6 @@ class HashMap(object):
 	def __init__(self, capacity=1000):
 		self.capacity = capacity
 		self.buckets = [[] for i in xrange(self.capacity)]
-		self.keys = []
 
 	def hash(self, key):
 		return sum([ord(c) for c in key]) % self.capacity
@@ -15,7 +14,6 @@ class HashMap(object):
 				bucket[i] = (key, val)
 				return
 		bucket.append((key, val))
-		self.keys.append(key)
 
 	def get(self, key):
 		bucket = self.buckets[self.hash(key)]
@@ -31,7 +29,6 @@ class HashMap(object):
 			k, v = bucket[i]
 			if k == key:
 				bucket.remove(bucket[i])
-				self.keys.remove(key)
 				return
 		raise KeyError(key)
 
@@ -57,8 +54,9 @@ class HashMap(object):
 
 	def __repr__(self):
 		string = []
-		for k in self.keys:
-			string.append(k + ": " + self.get(k))
+		for bucket in self.buckets:
+			if not bucket: continue
+			string.append(bucket[0][0] + ": " + str(bucket))
 		return '\n'.join(string)
 
 h = HashMap()
