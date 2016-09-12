@@ -6,15 +6,14 @@ class Solution(object):
         """
         i = 0
         while i < len(nums):
-            if nums[i] > 0 and nums[i] <= len(nums) and nums[nums[i]-1] != nums[i]:
-                j = nums[i]-1
-                nums[i], nums[j] = nums[j], nums[i]
-            else:
-                i += 1
-                
-        for j in xrange(len(nums)):
-            if nums[j] != j+1:
-                return j+1
+            n = nums[i]
+            if n > 0 and n <= len(nums) and nums[n-1] != n:
+                nums[i], nums[n-1] = nums[n-1], nums[i]
+                continue
+            i += 1
+        for i in xrange(len(nums)):
+            if nums[i] != i + 1:
+                return i + 1
         return len(nums)+1
 
 
