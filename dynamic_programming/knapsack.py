@@ -1,3 +1,9 @@
+"""
+Write a program for the knapsack problem that selects a subset of items
+that has maximum value and satisfies the weight constraint. All item have
+integer weights and values. Return the value of the subset.
+"""
+
 class Item(object):
 	def __init__(self, weight, val):
 		self.weight = weight
