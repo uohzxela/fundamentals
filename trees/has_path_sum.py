@@ -6,6 +6,8 @@ def has_path_sum_(root, target, res):
 	res += root.val
 	if root.left is None and root.right is None:
 		return res == target
+	# we are only finding if a root-to-leaf path has target sum, not summing up all the paths
+	# hence we return a boolean value (contrast this with sum_root_to_leaf_paths.py)
 	return (has_path_sum_(root.left, target, res) or 
 			has_path_sum_(root.right,target, res))
 
