@@ -1,11 +1,9 @@
-"""
-similar to strings/multiply_bigint.py, but the latter uses the reverse method
-"""
 def multiply(A, B):
 	sign = -1 if A[0] < 0 or B[0] < 0 else 1
 	A[0] = abs(A[0])
 	B[0] = abs(B[0])
-
+	# perform multiplication from the back to avoid reversing
+	# contrast this with strings/multiply_bigint.py
 	res = [0] * (len(A) + len(B))
 	for i in xrange(len(A)-1, -1, -1):
 		for j in xrange(len(B)-1, -1, -1):
@@ -13,7 +11,6 @@ def multiply(A, B):
 			# shift carry forward
 			res[i+j] += res[i+j+1]/10
 			res[i+j+1] %= 10
-
 	if res[0] == 0:
 		res = res[1:]
 	res[0] *= sign

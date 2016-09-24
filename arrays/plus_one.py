@@ -1,14 +1,13 @@
 def plus_one(A):
-	A.reverse()
 	carry = 1
-	for i in xrange(len(A)):
+	for i in xrange(len(A)-1, -1, -1):
 		A[i] += carry
 		carry = A[i] / 10
 		A[i] %= 10
-		if carry == 0: break
+		if carry == 0:
+			break
 	if carry > 0:
-		A.append(1)
-	A.reverse()
+		A.insert(0, carry)
 	return A
 
 assert plus_one([9,9]) == [1,0,0]
