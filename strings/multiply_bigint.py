@@ -3,15 +3,14 @@ def multiply(a, b):
     b = list(b)
     a.reverse()
     b.reverse()
+
     res = [0] * (len(a) + len(b))
-    carry = 0
     for i in xrange(len(a)):
-        carry = 0
         for j in xrange(len(b)):
-            res[i+j] += carry + (int(a[i]) * int(b[j]))
-            carry = res[i+j]/10
+            res[i+j] += int(a[i]) * int(b[j])
+            res[i+j+1] += res[i+j]/10
             res[i+j] %= 10
-        res[i + len(b)] += carry
+
     if res[-1] == 0:
         res = res[:-1]
     res.reverse()
