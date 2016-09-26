@@ -8,6 +8,8 @@ def roman_to_decimal(s):
 		"D": 500,
 		"M": 1000
 	}
+	# start from the back, if the current symbol violates
+	# the nonincreasing property, decrease it from the decimal value
 	decimal = T[s[-1]]
 	for i in xrange(len(s)-2, -1, -1):
 		if T[s[i]] < T[s[i+1]]:
