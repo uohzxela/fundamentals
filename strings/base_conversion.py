@@ -10,23 +10,24 @@ def convert_base(s, b1, b2):
 	Returns:
 		Output should be the string representing the integer in base2.
 	"""
-	x = 0
+	BASE_TEN = 10
+	decimal = 0
 	is_neg = s[0] == '-'
 	for c in s:
 		if c.isalpha():
-			x = b1 * x + 10 + ord(c) - ord('A')
+			decimal = b1 * decimal + BASE_TEN + ord(c) - ord('A')
 		elif c.isdigit():
-			x = b1 * x + ord(c) - ord('0')
+			decimal = b1 * decimal + ord(c) - ord('0')
 
 	res = []
-	while x:
-		mod = x % b2
-		if mod >= 10:
-			mod = chr(ord('A') + mod - 10)
+	while decimal:
+		mod = decimal % b2
+		if mod >= BASE_TEN:
+			mod = chr(ord('A') + mod - BASE_TEN)
 		else:
-			mod = str(mod)
+			mod = chr(ord('0') + mod)
 		res.append(mod)
-		x /= b2
+		decimal /= b2
 
 	if is_neg: res.append('-')
 	res.reverse()
