@@ -8,11 +8,18 @@ def bfs(g):
 			q.append(v)
 		while q:
 			n = q.popleft()
-			visited[n] = True
+			# don't mark it as visited after removing from queue
+			# or else there will bugs related to duplicate nodes!
 			print n,
 			for neighbor in g[n]:
-				if not visited[neighbor]:
-					q.append(neighbor)
+				if visited[neighbor]:
+					continue
+				# important! 
+				# mark neighbor as visited before pushing it into queue
+				# this is to avoid duplicate neighbors being pushed into the queue
+				# in the following iterations of while loop
+				visited[n] = True
+				q.append(neighbor)
 
 g2 = {
     0 : [1,2,3],
