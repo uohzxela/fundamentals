@@ -5,6 +5,7 @@ def bfs(g):
 
 	for v in g:
 		if not visited[v]:
+			visited[v] = True
 			q.append(v)
 		while q:
 			n = q.popleft()
