@@ -21,4 +21,5 @@ def palin(s, curr, l, r):
 	palin(s, curr, l, r+1)
 
 
-palinDecomp("aab")
+# palinDecomp("aab")
+palinDecomp('0204451881')
