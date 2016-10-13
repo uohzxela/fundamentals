@@ -1,15 +1,12 @@
 def has_path_sum(root, target):
-	return has_path_sum_(root, target, 0)
-
-def has_path_sum_(root, target, res):
 	if not root: return False
-	res += root.val
-	if root.left is None and root.right is None:
-		return res == target
+	if not root.left and not root.right:
+		return target - root.val == 0
+	left = has_path_sum(root.left, target - root.val)
+	right = has_path_sum(root.right, target - root.val)
 	# we are only finding if a root-to-leaf path has target sum, not summing up all the paths
 	# hence we return a boolean value (contrast this with sum_root_to_leaf_paths.py)
-	return (has_path_sum_(root.left, target, res) or 
-			has_path_sum_(root.right,target, res))
+	return left or right
 
 class Node(object):
 	def __init__(self, val):

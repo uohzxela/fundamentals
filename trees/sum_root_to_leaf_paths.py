@@ -1,13 +1,14 @@
 def sum_root_to_leaf_paths(root):
-	return dfs(root, 0)
+	return sum_paths(root, 0)
 
-def dfs(root, res):
-	if not root: return 0
+def sum_paths(root, res):
+	if not root:
+		return 0
 	res = res*2+root.val
 	if not root.left and not root.right:
 		return res
-	left = dfs(root.left, res)
-	right = dfs(root.right, res)
+	left = sum_paths(root.left, res)
+	right = sum_paths(root.right, res)
 	return left + right
 
 class Node(object):
