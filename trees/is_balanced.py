@@ -7,10 +7,11 @@
 
 class Solution(object):
     def getHeight(self, root):
-        if root == None: 
+        if not root: 
             return 0
         left = self.getHeight(root.left) 
         right = self.getHeight(root.right)
+        # need to specify "!= None" because 0 is also a falsy value
         if left != None and right != None and abs(left - right) <= 1:  
             return max(left,right) + 1
 
