@@ -1,31 +1,32 @@
-class Tree(object):
-	def __init__(self, x):
-		self.val = x
+class Node(object):
+	def __init__(self, val):
+		self.val = val
 		self.left = None
 		self.right = None
-		self.nextRight = None
+		self.next = None
 
-r = Tree(1)
-r.left = Tree(2)
-r.right = Tree(3)
-r.left.left = Tree(4)
-r.left.right = Tree(5)
-r.right.left = Tree(6)
-r.right.right = Tree(7)
+r = Node(1)
+r.left = Node(2)
+r.right = Node(3)
+r.left.left = Node(4)
+r.left.right = Node(5)
+r.right.left = Node(6)
+r.right.right = Node(7)
 
 def populate(root):
-	if not root: return
+	if not root:
+		return
 	if root.left:
-		root.left.nextRight = root.right
-	if root.right:
-		root.right.nextRight = root.nextRight.left if root.nextRight else None
+		root.left.next = root.right
+	if root.right and root.next:
+		root.right.next = root.next.left
 	populate(root.left)
 	populate(root.right)
 
 def printNext(curr):
 	while curr is not None:
 		print curr.val, "->",
-		curr = curr.nextRight
+		curr = curr.next
 	print "None"
 
 populate(r)
