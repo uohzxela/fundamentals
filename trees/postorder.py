@@ -61,8 +61,7 @@ def postorder_iter2(root):
 			root = root.left
 		root = st.pop()
 		if st and root.right == st[-1]:
-			st.pop()
-			st.append(root)
+			st[-1] = root
 			root = root.right
 		else:
 			print root.val,
