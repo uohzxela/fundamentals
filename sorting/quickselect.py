@@ -3,7 +3,7 @@ def quickselect(A, k):
 
 
 def select(A, l, h, k):
-	if l > h: return
+	if l > h: return None
 	p = partition(A, l, h)
 	if p == k: 
 		return A[p]
