@@ -5,3 +5,4 @@ def swap(x, i, j):
 	return x
 
 assert swap(73, 1, 6) == 11
+assert swap(0b11110000, 0, 7) == 0b01110001

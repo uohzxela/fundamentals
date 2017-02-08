@@ -15,6 +15,7 @@ def parity2(x):
 	return res
 
 # O(logn) where n = word size
+# assumption: x is 64 bit long
 def parity3(x):
 	x ^= x >> 32
 	x ^= x >> 16
@@ -24,13 +25,17 @@ def parity3(x):
 	x ^= x >> 1
 	return x & 1
 
-def parity_cache(x):
+# O(n/L), where n = 64, and L = 16
+# another solution: use precomputed cache of size 2^16,
+# each cache slot holds the parity of 16-bit word
+def parity_cache(x, cache):
 	WORD_SIZE = 16
+	# masks 16 least-significant bits
 	BIT_MASK = 0xFFFF
-	return cache[x & BIT_MASK] ^
+	return (cache[x & BIT_MASK] ^
 		   cache[(x >> WORD_SIZE) & BIT_MASK] ^
 		   cache[(x >> (WORD_SIZE * 2)) & BIT_MASK] ^
-		   cache[(x >> (WORD_SIZE * 3)) & BIT_MASK]
+		   cache[(x >> (WORD_SIZE * 3)) & BIT_MASK])
 
 assert parity(0x1011) == 1
 assert parity(0x101) == 0
