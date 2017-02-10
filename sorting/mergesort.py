@@ -8,7 +8,7 @@ def mergesort(A):
 
 def merge(left, right):
 	res = []
-	n, m = 0, 0
+	n = m = 0
 	while n < len(left) and m < len(right):
 		if left[n] <= right[m]:
 			res.append(left[n])

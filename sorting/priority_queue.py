@@ -10,8 +10,8 @@ class PriorityQueue:
 	"""Time complexity: O(n)"""
 	def heapify(self, arr):
 	# arr is an array with arbitrarily placed elements
-	# the observation is that any element that is indexed after self.n/2-1 is a leaf node
-	# hence it is a one-element heap,
+	# the observation is that any element that is indexed after (self.n/2)-1 is a leaf node
+	# hence it is an one-element heap,
 	# so we only need to bubble down the non-leaf nodes before the index
 		self.q = arr
 		self.n = len(arr)
