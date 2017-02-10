@@ -1,13 +1,13 @@
 from add import add
 
-def multiply(a, b):
-	sum = 0
-	while a:
-		if a & 1:
-			sum = add(sum, b)
-		a >>= 1
-		b <<= 1
-	return sum
+def multiply(x, y):
+	res = 0
+	while y:
+		if y & 1:
+			res = add(res, x)
+		y >>= 1
+		x <<= 1
+	return res
 
 assert multiply(2, 3) == 6
 assert multiply(2, 4) == 8
