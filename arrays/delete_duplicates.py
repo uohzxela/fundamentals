@@ -7,4 +7,18 @@ def delete_duplicates(A):
 			write_index += 1
 	return write_index
 
+def delete_duplicates2(A):
+	write_index = 0
+	prev = None
+	for i in xrange(len(A)):
+		if prev != A[i]:
+			A[write_index] = A[i]
+			prev = A[i]
+			write_index += 1
+	return write_index
+
+assert delete_duplicates([2, 3, 5, 5, 7, 11, 11, 11, 13]) == 6
 assert delete_duplicates([1,1,2,2,2,2,2,2,2,2,3,4,4,5]) == 5
+
+assert delete_duplicates2([2, 3, 5, 5, 7, 11, 11, 11, 13]) == 6
+assert delete_duplicates2([1,1,2,2,2,2,2,2,2,2,3,4,4,5]) == 5
