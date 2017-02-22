@@ -27,5 +27,10 @@ def reverse(A, s, e):
 		A[s+i], A[e-i] = A[e-i], A[s+i]
 
 assert next_perm([1,0,3,2]) == [1,2,0,3]
-assert next_perm([6,2,1,5,4,3,0]) == [6,2,3,0,1,4,5]
+assert next_perm([0,1,2]) == [0,2,1]
+assert next_perm([0,2,1]) == [1,0,2]
+assert next_perm([1,0,2]) == [1,2,0]
+assert next_perm([1,2,0]) == [2,0,1]
+assert next_perm([2,0,1]) == [2,1,0]
 assert next_perm([2,1,0]) == []
+assert next_perm([6,2,1,5,4,3,0]) == [6,2,3,0,1,4,5]
