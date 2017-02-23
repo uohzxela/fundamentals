@@ -7,4 +7,4 @@ def offline_sampling(A, k):
 		A[i], A[target] = A[target], A[i]
 	return A
 
-print offline_sampling([1,2,3,4,5,6,7,8], 5)
+# print offline_sampling([1,2,3,4,5,6,7,8], 5)
