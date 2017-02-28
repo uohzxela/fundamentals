@@ -6,23 +6,12 @@ class Solution(object):
         :type board: List[List[str]]
         :rtype: bool
         """
-        return (self.hasValidRows(board) and
-                self.hasValidCols(board) and
-                self.hasValidSubgrids(board))
-    
-    def hasValidRows(self, board):
         for i in xrange(len(board)):
             if self.hasDuplicate(board, i, i+1, 0, len(board[0])):
                 return False
-        return True
-    
-    def hasValidCols(self, board):
         for i in xrange(len(board[0])):
             if self.hasDuplicate(board, 0, len(board), i, i+1):
                 return False
-        return True
-    
-    def hasValidSubgrids(self, board):
         regionSize = int(math.sqrt(len(board)))
     	for i in xrange(regionSize):
     		for j in xrange(regionSize):
