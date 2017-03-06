@@ -21,12 +21,12 @@ def convert_base(s, b1, b2):
 
 	res = []
 	while decimal:
-		mod = decimal % b2
-		if mod >= BASE_TEN:
-			mod = chr(ord('A') + mod - BASE_TEN)
+		d = decimal % b2
+		if d >= BASE_TEN:
+			c = chr(ord('A') + d - BASE_TEN)
 		else:
-			mod = chr(ord('0') + mod)
-		res.append(mod)
+			c = chr(ord('0') + d)
+		res.append(c)
 		decimal /= b2
 
 	if is_neg: res.append('-')
