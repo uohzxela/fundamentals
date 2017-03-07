@@ -24,4 +24,5 @@ def is_palindrome(s):
 
 assert is_palindrome("A man, a plan, a canal, Panama")
 assert is_palindrome("Able was I, ere I saw Elba!")
+assert is_palindrome("Nun123 321Nun")
 assert not is_palindrome("Ray a Ray")
