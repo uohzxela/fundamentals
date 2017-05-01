@@ -8,7 +8,7 @@ def sqrt(x):
         else:
             right = mid - 1
     # why minus 1? because left = mid + 1,
-    # we need to get the most recent mid
+    # we need to return the most recent mid
     return left - 1
 
 assert sqrt(0) == 0
