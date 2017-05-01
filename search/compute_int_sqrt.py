@@ -1,3 +1,4 @@
+# this solution is really about finding floor(sqrt(x)) so we need to return (left - 1)
 def sqrt(x):
     left, right = 0, x
     while left <= right:
