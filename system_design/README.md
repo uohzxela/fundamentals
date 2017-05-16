@@ -2,6 +2,7 @@
 - http://highscalability.com/
 - http://www.hiredintech.com/system-design/the-system-design-process/
 - https://github.com/donnemartin/system-design-primer
+- https://github.com/theanalyst/awesome-distributed-systems
 
 ## Readings
 - [ ] http://the-paper-trail.org/blog/distributed-systems-theory-for-the-distributed-systems-engineer/
