@@ -18,6 +18,7 @@ class Solution(object):
         	This is because a coin can be used infinite number of times,
         	whereas for the knapsack solution, an item can only be used once.
         	So when we reverse the inner loop, we avoid using the item more than once.
+        	Vice-versa, when we don't reverse the inner loop, we can reuse the current coin infinitely.
         	"""
             for i in xrange(coin, amount+1):
                 dp[i] += dp[i-coin]
