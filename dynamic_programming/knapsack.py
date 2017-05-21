@@ -35,7 +35,19 @@ def find_optimum_valDP(capacity, items):
 			dp[i][j] = max(val1, val2)
 	return dp[-1][-1]
 
+def find_optimum_valDP2(capacity, items):
+	dp = [0 for i in xrange(capacity+1)]
+	for item in items:
+		# inner loop reversed when using 1D table to avoid using the item more than once.
+		for i in xrange(capacity, item.weight-1, -1):
+			dp[i] = max(dp[i-item.weight] + item.val, dp[i])
+	return dp[-1]
+
+
 items = [Item(5, 60), Item(3, 50), Item(4, 70), Item(2, 30)]
+items2 = [Item(1,6), Item(2,10), Item(3,12)]
 assert find_optimum_val(5, items) == 80
 assert find_optimum_valDP(5, items) == 80
-
+assert find_optimum_valDP(5, items2) == 22
+assert find_optimum_valDP2(5, items) == 80
+assert find_optimum_valDP2(5, items2) == 22
