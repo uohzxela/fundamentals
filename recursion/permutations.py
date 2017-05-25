@@ -1,14 +1,19 @@
 # O(n!)
-def permutations(A):
-	print_permutations(A, 0)
+class Solution(object):
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        res = []
+        self.helper(nums, 0, res)
+        return res
 
-def print_permutations(A, p):
-	if p == len(A):
-		print A
-		return
-	for i in xrange(p, len(A)):
-		A[i], A[p] = A[p], A[i]
-		print_permutations(A, p+1)
-		A[i], A[p] = A[p], A[i]
-
-permutations([1,2,3])
+    def helper(self, nums, k, res):
+        if k == len(nums):
+            res.append(list(nums))
+            return
+        for i in xrange(k, len(nums)):
+            nums[i], nums[k] = nums[k], nums[i]
+            self.helper(nums, k+1, res)
+            nums[i], nums[k] = nums[k], nums[i]
