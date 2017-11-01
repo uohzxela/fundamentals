@@ -12,7 +12,7 @@ class PriorityQueue:
 	# arr is an array with arbitrarily placed elements
 	# the observation is that any element that is indexed after (self.n/2)-1 is a leaf node
 	# hence it is an one-element heap,
-	# so we only need to bubble down the non-leaf nodes before the index
+	# so we only need to bubble down the non-leaf nodes before that index
 		self.q = arr
 		self.n = len(arr)
 		for i in xrange(self.n/2-1, -1, -1):
