@@ -72,25 +72,27 @@ class Heap(object):
     def __swap(self, i, j):
         self.arr[i], self.arr[j] = self.arr[j], self.arr[i]
 
-heap = Heap()
 
-assert heap.extract_min() is None
+if __name__ == "__main__":
+    heap = Heap()
 
-heap.insert(3)
-heap.insert(2)
-heap.insert(15)
-heap.insert(5)
-heap.insert(4)
-heap.insert(45)
+    assert heap.extract_min() is None
 
-assert heap.extract_min() == 2
-assert heap.extract_min() == 3
-assert heap.extract_min() == 4
-assert heap.extract_min() == 5
-assert heap.extract_min() == 15
-assert heap.extract_min() == 45
-assert heap.extract_min()is None
+    heap.insert(3)
+    heap.insert(2)
+    heap.insert(15)
+    heap.insert(5)
+    heap.insert(4)
+    heap.insert(45)
 
-heap2 = Heap()
-heap2.heapify([3, 45, 15, 5, 4, 2])
-assert heap2.arr == [2, 4, 3, 5, 45, 15]
+    assert heap.extract_min() == 2
+    assert heap.extract_min() == 3
+    assert heap.extract_min() == 4
+    assert heap.extract_min() == 5
+    assert heap.extract_min() == 15
+    assert heap.extract_min() == 45
+    assert heap.extract_min()is None
+
+    heap2 = Heap()
+    heap2.heapify([3, 45, 15, 5, 4, 2])
+    assert heap2.arr == [2, 4, 3, 5, 45, 15]
