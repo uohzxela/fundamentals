@@ -25,29 +25,29 @@ class LRUCache(object):
         """
         if key in self.hashmap:
             node = self.hashmap[key]
-            self.delete(node)
-            self.insert(node)
+            self.__remove(node)
+            self.__push(node)
             return node.val
         else:
             return -1
-        
-    def set(self, key, val):
+
+    def put(self, key, val):
         """
         :type key: int
         :type value: int
         :rtype: nothing
         """
         if key not in self.hashmap:
-            self.insert(Node(key, val))
+            self.__push(Node(key, val))
         else:
             node = self.hashmap[key]
             node.val = val
-            self.delete(node)
-            self.insert(node)
-    
-    def insert(self, node):
+            self.__remove(node)
+            self.__push(node)
+
+    def __push(self, node):
         if self.size == self.capacity:
-            self.delete(self.tail)
+            self.__remove(self.tail)
         if not self.head:
             self.head = node
             self.tail = node
@@ -57,11 +57,11 @@ class LRUCache(object):
             self.head = node
         self.hashmap[node.key] = node
         self.size += 1
-        
-    def delete(self, node):
+
+    def __remove(self, node):
         if not node:
             return
-        if node == self.head: 
+        if node == self.head:
             self.head = node.next
         if node == self.tail:
             self.tail = node.prev
@@ -77,9 +77,9 @@ class LRUCache(object):
 
 
 c = LRUCache(2)
-c.set(2,1)
-c.set(1,1)
-c.set(2,3)
-c.set(4,1)
+c.set(2, 1)
+c.set(1, 1)
+c.set(2, 3)
+c.set(4, 1)
 print c.get(1)
 print c.get(2)
