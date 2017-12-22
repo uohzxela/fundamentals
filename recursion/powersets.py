@@ -1,3 +1,4 @@
+# O(2^n)
 class Solution(object):
     def subsets(self, nums):
         """
