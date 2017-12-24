@@ -7,6 +7,9 @@ def multiply(A, B):
 	res = [0] * (len(A) + len(B))
 	for i in xrange(len(A)-1, -1, -1):
 		for j in xrange(len(B)-1, -1, -1):
+			# why i+j+1?
+			# because need to shift right by 1 to make space
+			# for possible carry digit in index 0 (e.g. 9 * 9 = 81)
 			res[i+j+1] += A[i] * B[j]
 			# shift carry forward
 			res[i+j] += res[i+j+1]/10
