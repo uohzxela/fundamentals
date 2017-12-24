@@ -7,7 +7,8 @@ def plus_one(A):
 		if carry == 0:
 			break
 	if carry > 0:
-		A.insert(0, carry)
+		A[0] = 1
+		A.append(0)
 	return A
 
 assert plus_one([9,9]) == [1,0,0]
