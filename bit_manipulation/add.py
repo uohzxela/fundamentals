@@ -1,17 +1,17 @@
 def add(x, y):
-	k = 1
-	x_temp = x
-	y_temp = y
+	mask = 1
+	x_copy = x
+	y_copy = y
 	res = carry = 0
-	while x_temp or y_temp:
-		xk = k & x
-		yk = k & y
-		res |= xk ^ yk ^ carry
-		carry = (xk & yk) | (xk & carry) | (yk & carry)
+	while x_copy or y_copy:
+		x_bit = mask & x
+		y_bit = mask & y
+		res |= x_bit ^ y_bit ^ carry
+		carry = (x_bit & y_bit) | (x_bit & carry) | (y_bit & carry)
 		carry <<= 1
-		k <<= 1
-		x_temp >>= 1
-		y_temp >>= 1
+		mask <<= 1
+		x_copy >>= 1
+		y_copy >>= 1
 	return res | carry
 
 assert add(3, 6) == 9
