@@ -12,7 +12,7 @@ def atoi(s):
 	return res * sign
 
 def is_digit(c):
-	return ord(c) >= ord('0') and ord(c) <= ord('9')
+	return ord('0') <= ord(c) <= ord('9')
 
 assert atoi("2147483648") == 2147483648
 assert atoi("-123") == -123
