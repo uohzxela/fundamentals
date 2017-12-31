@@ -17,3 +17,26 @@ def hasCycle(head):
         return True
     except:
         return False
+
+# returns start of cycle if any
+class Solution(object):
+    def detectCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        slow = fast = head
+        has_cycle = False
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if slow == fast:
+                has_cycle = True
+                break
+        if not has_cycle:
+            return None
+        slow = head
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+        return slow
