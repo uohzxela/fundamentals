@@ -13,21 +13,17 @@ r.right.left = Tree(6)
 r.right.right = Tree(7)
 
 def print_paths(root):
-	if not root: print []; return
-	print_paths_(root, [root.val])
+	print_paths_(root, [])
 
 def print_paths_(root, path):
+	if not root:
+		return
+	path.append(root.val)
 	if not root.left and not root.right:
 		print path
-		return
-	if root.left:
-		path.append(root.left.val)
+	else:
 		print_paths_(root.left, path)
-		path.pop()
-	if root.right:
-		path.append(root.right.val)
 		print_paths_(root.right, path)
-		path.pop()
+	path.pop()
 
 print_paths(r)
-
