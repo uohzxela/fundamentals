@@ -1,4 +1,5 @@
 from utils import printTree
+from collections import deque
 
 class Node(object):
 	def __init__(self, val):
@@ -7,16 +8,17 @@ class Node(object):
 		self.right = None
 
 def reconstruct_tree(preorder):
-	return reconstruct_tree_(preorder, 0)[0]
+	preorder = deque(preorder)
+	return reconstruct_tree_(preorder)
 
-def reconstruct_tree_(preorder, i):
-	val = preorder[i]
+def reconstruct_tree_(preorder):
+	val = preorder.popleft()
 	if val is None:
-		return None, i
+		return None
 	node = Node(val)
-	node.left, i = reconstruct_tree_(preorder, i+1)
-	node.right, i = reconstruct_tree_(preorder, i+1)
-	return node, i 
+	node.left = reconstruct_tree_(preorder)
+	node.right = reconstruct_tree_(preorder)
+	return node
 
 preorder = ['H', 'B', 'F', None, None, 'E', 'A', None, None, None, 'C', None, 'D', None, 'G', 'I', None, None, None]
 root = reconstruct_tree(preorder)
