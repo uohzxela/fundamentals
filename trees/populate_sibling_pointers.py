@@ -13,6 +13,7 @@ r.left.right = Node(5)
 r.right.left = Node(6)
 r.right.right = Node(7)
 
+# only works for perfect binary trees
 def populate(root):
 	if not root:
 		return
@@ -34,3 +35,22 @@ populate(r)
 printNext(r)
 printNext(r.left)
 printNext(r.left.left)
+
+# generic solution that also works for general binary trees
+class Solution:
+    # @param root, a tree link node
+    # @return nothing
+    def connect(self, root):
+        dummy = child = TreeLinkNode(0)
+        while root:
+            child.next = root.left
+            if child.next:
+                child = child.next
+            child.next = root.right
+            if child.next:
+                child = child.next
+            if root.next:
+                root = root.next
+            else:
+                root = dummy.next
+                child = dummy
