@@ -17,17 +17,12 @@ def find_duplicate_and_missing(A):
 			miss_OR_dup ^= A[i]
 
 	# miss_OR_dup is either the missing value or the duplicated entry
-	for a in A:
+	if miss_OR_dup in A:
 		# miss_OR_dup is the duplicate
-		if a == miss_OR_dup:
-			duplicate = miss_OR_dup
-			missing = miss_OR_dup ^ miss_XOR_dup
-			return duplicate, missing 
-
-	# miss_OR_dup is the missing value
-	duplicate = miss_OR_dup ^ miss_XOR_dup
-	missing = miss_OR_dup
-	return duplicate, missing
+		return miss_OR_dup, miss_OR_dup ^ miss_XOR_dup 
+	else:
+		# miss_OR_dup is the missing value
+		return miss_OR_dup ^ miss_XOR_dup, miss_OR_dup
 
 assert find_duplicate_and_missing([5,3,0,3,1,2]) == (3, 4)
 assert find_duplicate_and_missing([4,1,0,3,4,2]) == (4, 5)
