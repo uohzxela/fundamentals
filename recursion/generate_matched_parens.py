@@ -13,3 +13,23 @@ def generate(s, left, right, res):
 		generate(s + ")", left, right-1, res)
 
 print generate_matched_parens(4)
+
+class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        def helper(partial, res, mismatched_count, n):
+            if mismatched_count < 0:
+                return
+            if len(partial) == n * 2:
+                if mismatched_count == 0:
+                    res.append(partial)
+                return
+            helper(partial + '(', res, mismatched_count + 1, n)
+            helper(partial + ')', res, mismatched_count - 1, n)
+        
+        res = []
+        helper('', res, 0, n)
+        return res
