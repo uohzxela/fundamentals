@@ -23,3 +23,33 @@ def decompose(s, decompositions, l, r):
 
 # palin_decomp("aab")
 palin_decomp('0204451881')
+
+# alternative solution
+class Solution(object):
+    def partition(self, s):
+        """
+        :type s: str
+        :rtype: List[List[str]]
+        """
+        res = []
+        self.helper(s, 0, 1, [], res)
+        return res
+    
+    def helper(self, s, start, end, partitions, res):
+        if end >= len(s):
+            if self.is_palin(s, start, end - 1):
+                res.append(list(partitions) + [s[start:end]])
+            return
+        if self.is_palin(s, start, end - 1):
+            partitions.append(s[start:end])
+            self.helper(s, end, end + 1, partitions, res)
+            partitions.pop()
+        self.helper(s, start, end + 1, partitions, res)
+        
+    def is_palin(self, s, left, right):
+        while left < right:
+            if s[left] != s[right]:
+                return False
+            left, right = left + 1, right - 1
+        return True
+
