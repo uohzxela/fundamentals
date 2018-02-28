@@ -26,3 +26,25 @@ def lndsDP(A):
 	return res
 
 assert lndsDP([0, 8, 4, 12, 2, 10, 6, 14, 1, 9]) == 4
+
+# O(nlogn) solution
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dp = []
+        for num in nums:
+            s, e = 0, len(dp) - 1
+            while s <= e:
+                m = (s + e) / 2
+                if dp[m] < num:
+                    s = m + 1
+                else:
+                    e = m - 1
+            if s == len(dp):
+                dp.append(num)
+            else:
+                dp[s] = num
+        return len(dp)
