@@ -11,9 +11,7 @@ def apply_permutation2(A, P):
 		next = i
 		while P[next] >= 0:
 			A[i], A[P[next]] = A[P[next]], A[i]
-			temp = P[next]
-			P[next] = P[next] - len(P)
-			next = temp
+			next, P[next] = P[next], P[next] - len(P)
 	# P is restored
 	for i in xrange(len(P)):
 		P[i] += len(P)
