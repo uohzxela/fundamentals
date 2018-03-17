@@ -18,3 +18,15 @@ def reverse_bits_optimized(x, cache):
 		   cache[x & BIT_MASK] << (WORD_SIZE * 3))
 
 assert reverse_bits(0b11110000) == 0b1111
+
+# alternative solution (assuming 32 bits)
+
+class Solution:
+    # @param n, an integer
+    # @return an integer
+    def reverseBits(self, n):
+        res = 0
+        for _ in xrange(32):
+            res = (res << 1) + (n & 1)
+            n >>= 1
+        return res
