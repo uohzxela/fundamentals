@@ -14,11 +14,14 @@ def multiply(A, B):
 			# shift carry forward
 			res[i+j] += res[i+j+1]/10
 			res[i+j+1] %= 10
-	if res[0] == 0:
-		res = res[1:]
+	start = 0
+	while start < len(res) - 1 and res[start] == 0:
+		start += 1
+	res = res[start:]
 	res[0] *= sign
 	return res
 
 assert multiply([9,9], [-9,9]) == [-9,8,0,1]
 assert multiply([9,9], [9,9]) == [9,8,0,1]
 assert multiply([1,9,3,7,0,7,7,2,1], [-7,6,1,8,3,8,2,5,7,2,8,7]) == [-1,4,7,5,7,3,9,5,2,5,8,9,6,7,6,4,1,2,9,2,7]
+assert multiply([1,2,3], [0]) == [0]
