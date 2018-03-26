@@ -1,4 +1,5 @@
 # compare with arrays/max_subarray_product.py (similar solution)
+# can handle all negative numbers too
 class Solution(object):
     def maxSubArray(self, nums):
         """
