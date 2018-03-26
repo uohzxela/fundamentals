@@ -1,11 +1,12 @@
-def maxSubarray(A):
-	currSum = A[0]
-	maxSum = 0
-	for i in xrange(1,len(A)):
-		maxSum = max(currSum, maxSum)
-		currSum += A[i]
-		if currSum < 0: currSum = 0
-
-	return maxSum
-
-print maxSubarray([-2,1,-3,4,-1,2,1,-5,4])
+# compare with arrays/max_subarray_product.py (similar solution)
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        local_max = global_max = nums[0]
+        for num in nums[1:]:
+            local_max = max(local_max + num, num)
+            global_max = max(local_max, global_max)
+        return global_max
