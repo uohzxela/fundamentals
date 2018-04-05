@@ -38,3 +38,15 @@ def spiral(m):
 assert spiral(m1) == [1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10]
 assert spiral(m2) == [1,2,3,6,9,8,7,4,5]
 assert spiral(m3) == [1,2,4,3]
+
+# alternative solution
+# https://leetcode.com/problems/spiral-matrix/discuss/20571/1-liner-in-Python-+-Ruby
+class Solution(object):
+    def spiralOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        if matrix == []:
+            return matrix
+        return list(matrix.pop(0)) + self.spiralOrder(zip(*matrix)[::-1])
